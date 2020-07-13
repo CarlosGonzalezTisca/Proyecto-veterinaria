@@ -1,0 +1,10 @@
+Para crear la base de datos:
+1. copiar el archivo veterinaria.js en la ruta "C:\Program Files\MongoDB\Server\4.2\bin".
+2. abre un cmd en modo admnistrador, y ingresa a la ruta C:\Program Files\MongoDB\Server\4.2\bin.
+comando en cmd para ingresar a esa ruta: cd C:\Program Files\MongoDB\Server\4.2\bin
+3. establece coneccion a tu clouster en la nube.
+4. ejecuta "load("veterinaria.js");"
+5. Verifica que devolvio un true y que se haya ingresado la base correctamente con "use veterinaria;" y "show collections;"
+6. debera aparecer 3 colecciones llamadas empleado, cliente y usuario.
+
+ 
