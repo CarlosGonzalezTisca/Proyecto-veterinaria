@@ -1,0 +1,41 @@
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<div class="container">
+    <button (click)="ListarMascota()" class="btn btn-info">Listar</button>
+    <button (click)="NuevoMascota()" class="btn btn-info" style="margin-left:10px">Nuevo</button>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h3>Mascota</h3>
+        </div>
+        <div class="card-body">
+         <table class="table table-hover">
+             <thead>
+                 <tr>
+                     <th>Nombre</th>
+                     <th>Raza</th>
+                     <th>Tamaño</th>
+                     <th>Peso</th>
+                     <th>ACCIONES</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr ngfor="let cliente of Cliente" class="text-center">
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td>
+                         <button (click)="EditarMascota()" class="btn btn-warning">Editar</button>
+                         <button class="btn btn-warning" style="margin-left:5px">Eliminar</button>
+                     </td>
+                 </tr>
+             </tbody>
+         </table>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<app-footer></app-footer>

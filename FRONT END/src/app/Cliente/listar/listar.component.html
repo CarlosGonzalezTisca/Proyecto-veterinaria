@@ -1,0 +1,53 @@
+<button type = "button" class = "btn btn-info"> Predeterminado </button>
+<button type = "button" class = "btn btn-info btn-round"> ​​Redondo </button>
+<button type = "button" class = "btn btn-info btn-round"> ​​<i class = "fa fa-heart"> </i> con el icono </button>
+<button type = "button" class = "btn btn-info btn-just-icon"> <i class = "fa fa-heart"> </i> </button>
+<button type = "button" class = "btn btn-info btn-link"> Simple </button>
+
+<meta name="viewport" content="width=device-width, user-scalable=no">
+
+<div class="container">
+    <button (click)="Listar()" class="btn btn-info">Listar</button>
+    <button (click)="Nuevo()" class="btn btn-info" style="margin-left:10px">Nuevo</button>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h3>Cliente</h3>
+        </div>
+        <div class="card-body">
+         <table class="table table-hover">
+             <thead>
+                 <tr>
+                     <th>Nombre</th>
+                     <th>Primer Apellido</th>
+                     <th>Segundo Apellido</th>
+                     <th>Dirección</th>
+                     <th>Teléfono</th>
+                     <th>Correo</th>
+                     <th>ACCIONES</th>
+                 </tr>
+             </thead>
+             <tbody>
+               
+                 <tr *ngFor="let cli of Clientes | async" class="text-center">
+                     <td>{{cli.nombre}}</td>
+                     <td>{{cli.apellido1}}</td>
+                     <td>{{cli.apellido2}}</td>
+                     <td>{{cli.direccion}}</td>
+                     <td>{{cli.telefono}}</td>
+                     <td>{{cli.correo}}</td>
+                     <td>
+                         <button (click)="Editar()" class="btn btn-warning">Editar</button>
+                         <button class="btn btn-warning" style="margin-left:5px">Eliminar</button>
+                     </td>
+                 </tr>
+             </tbody>
+         </table>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<app-footer></app-footer>
