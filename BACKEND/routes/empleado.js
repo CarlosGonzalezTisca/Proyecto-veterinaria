@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-const mongoose=require('mongoose');
-const ClienteSch= mongoose.model('empleado');
-const{check,ValidacionesResult, validationResult}=require('express-validator');
-const bcrypt = require ('bcrypt') ;  
+const mongoose = require('mongoose');
+const empleadoSchema = mongoose.model('empleados');
+
+const { check, ValidacionesResult, validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
 
 /* GET users listing. 
 router.get('/', async(req, res, next)=> {
@@ -16,68 +17,41 @@ router.get('/', async(req, res, next)=> {
  res.send("no hay usuarios que mostrar")
 });
 */
-router.get('/', async(req, res, next)=> {
- const usuario= await ClienteSch.find(function(err,usuario){
+router.get('/', async (req, res, next) => {
+  const emple = await empleadoSchema.find(function (err, emple) {
 
-  if(err){next(err)}
-  res.json(usuario)
- })
+    if (err) { next(err) }
+    res.json(emple)
+  })
 
-}); 
-
-router.post('/', [
-  check ('codigo').isLength({min:1}),
-  check('nombre').isLength({min:3}),
-  check('email').isLength({min:3}),
-  check('password').isLength({min:3}),
-],async(req, res)=> {
-  
-const errors= validationResult(req);
-if(!errors.isEmpty()){
-  return res.status(422).json({errors: errors.array()});
-}
-let usuario = await ClienteSch.findOne({email: req.body.email})
-if(usuario){
-  return res.status(400).send('Usuario ya exite')
-}
-const salt= await bcrypt.genSalt(10)
-const passcifrado= await bcrypt.hash(req.body.password,salt)
-//usuario= new ClienteSch(req.body);
-usuario= new ClienteSch({
-  codigo:req.body.codigo,
-  nombre:req.body.nombre,
-  email:req.body.email,
-  password:passcifrado,
-  
 });
-await usuario.save()
-res.status(200).send(usuario)
+// POST
+router.post('/', async (req, res) => {
+  let emple = await empleadoSchema.findOne({ nombre: req.body.nombre })
 
- }); 
+  if (emple) {
+    return res.send("Empleado ya existe")
+  }
 
+  emple = new empleadoSchema({
 
-router.post('/login',[
-check('email').isLength({min:1}),
-check('password').isLength({min:1})
-],async(req,res)=>{
+    "_id":req.body._id,
+    "nombre": req.body.nombre,
+    "apellido1": req.body.apellido1,
+    "apellido2": req.body.apellido2,
+    "direccion": req.body.direccion,
+    "telefono": req.body.telefono,
+    "correo": req.body.correo,
+    "contrasena": req.body.contrasena,
+    "horario": [{
+      "horaini": req.body.horaini,
+      "horafin": req.body.horafin,
+      "dias": req.body.dias
+    }],
 
-
-const errors= validationResult(req);
-if(!errors.isEmpty()){
-  return res.status(422).json({errors: errors.array()});
-}
-
-let usuario=await ClienteSch.findOne({email: req.body.email})
-if(!usuario){
-return res.status(400).send('Usuarios o Contraseña incorrectos')
-
-}
-
-const validaPassword=await bcrypt.compare(req.body.password,usuario.password)
-if(!validaPassword){
-  return res.status(400).send('Usuarios o Contraseña incorrectos')
-}
-
-res.send('Bienvenido al sistema')
+  })
+  await emple.save()
+  res.status(201).send(emple)
 })
+
 module.exports = router;

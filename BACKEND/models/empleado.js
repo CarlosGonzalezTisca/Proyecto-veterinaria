@@ -1,40 +1,34 @@
 const mongoose = require('mongoose');
-const empleadoSchema= new mongoose.Schema({
-    
-    "_id":  {
-        type:Number,
+
+const empleadoSchema = new mongoose.Schema({
+    "_id": {
+        type: String,
         required: true,
-        unique: true,
-    
+        unique: true
     },
     "nombre": {
-        type :String,
-        required:true,
+        type: String,
+        required: true,
 
     },
-    "apellido1": String,
+    "apellido1": {
+        type: String,
+        required: true
+    },
     "apellido2": String,
-    "direccion": String,
-    "telefono": Number,
-    "direccion":String,
-    "telefono":String,
+    "direccion": { type: String, required: true },
+    "telefono": { type: String, required: true },
     "correo": {
         type: String,
         required: true,
-        unique:true,
+        unique: true,
 
     },
-    "contrasena":{
+    "contrasena": {
         type: String,
         required: true
     },
     "horario": Array,
-
-   
-   
-   
-  
-
 })
 
-mongoose.model('empleado',empleadoSchema);
+mongoose.model('empleados', empleadoSchema);

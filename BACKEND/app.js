@@ -7,8 +7,10 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 
 const usuariobd="Admini";
-const passbd="12345";
-const bd="veterinaria";
+ //const usuariobd ="carlos"
+const passbd="12345";  
+//onst pssbd="cegt171298"
+const bd = "veterinaria"
 
 mongoose.connect('mongodb+srv://'+usuariobd+':'+passbd+'@cluster0-6kxlk.mongodb.net/'+bd+'?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
 
