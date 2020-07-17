@@ -25,6 +25,7 @@ router.get('/', async (req, res, next) => {
   })
 
 });
+
 // POST
 router.post('/', async (req, res) => {
   let emple = await empleadoSchema.findOne({ nombre: req.body.nombre })
@@ -35,7 +36,7 @@ router.post('/', async (req, res) => {
 
   emple = new empleadoSchema({
 
-    "_id":req.body._id,
+    "_id": req.body._id,
     "nombre": req.body.nombre,
     "apellido1": req.body.apellido1,
     "apellido2": req.body.apellido2,
@@ -54,4 +55,36 @@ router.post('/', async (req, res) => {
   res.status(201).send(emple)
 })
 
+// PUT
+router.put('/', async (req, res) => {
+  const emple = await empleadoSchema.findOneAndUpdate({ _id: req.body._id },
+
+    {
+      "nombre": req.body.nombre,
+      "apellido1": req.body.apellido1,
+      "apellido2": req.body.apellido2,
+      "direccion": req.body.direccion,
+      "telefono": req.body.telefono,
+      "correo": req.body.correo,
+      "contrasena": req.body.contrasena,
+      "horario": [{
+        "horaini": req.body.horaini,
+        "horafin": req.body.horafin,
+        "dias": req.body.dias
+      }],
+    },
+    { new: true })
+    res.send(emple)
+})
+
+//BORRAR.
+router.post('/borrar', async(req,res)=>{
+  await empleadoSchema.findOneAndDelete({_id:req.body._id},function(err,empleadoeliminado){
+    
+    
+    if(err){res.send(err)}
+    res.json({Mensaje:'Empleado eliminado'})
+  })
+ 
+})
 module.exports = router;

@@ -28,7 +28,8 @@ const empleadoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    "horario": Array,
+    "horario": {type:Array,
+    required:true},
 })
 
 mongoose.model('empleados', empleadoSchema);
