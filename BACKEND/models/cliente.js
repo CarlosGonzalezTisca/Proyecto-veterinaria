@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const ClienteSchema= new mongoose.Schema({
     
-    "_id": Number,
+    "_id": String,
     "nombre": String,
     "apellido1": String,
     "apellido2": String,
@@ -10,9 +10,9 @@ const ClienteSchema= new mongoose.Schema({
     "correo": String,
     "mascota": [{
             
-            "nombre": String,
+            "nombre_masc": String,
             "raza": String,
-            "tamaño": String,
+            "estatura": String,
             "peso": Number,
             "jaula":{
                 "numerojaula": Number,
