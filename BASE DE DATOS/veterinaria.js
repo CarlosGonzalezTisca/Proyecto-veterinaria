@@ -9,9 +9,9 @@ db.empleados.insertOne(
         "correo": "correomendoza@gmail.com",
         "horario": [
             {
-                "horaini": "7:00",
-                "horafin": "14:00",
-                "dias": "Lunes, Jueves, Viernes"
+                "horaini": "10:00", 
+                "horafin": "15:00",
+                "dias": "Lunes, Miercoles, Viernes"
             }
         ]
     }
