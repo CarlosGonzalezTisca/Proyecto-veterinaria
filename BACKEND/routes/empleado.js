@@ -3,6 +3,7 @@ var router = express.Router();
 
 const mongoose = require('mongoose');
 const empleadoSchema = mongoose.model('empleados');
+//adios
 
 const { check, ValidacionesResult, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
