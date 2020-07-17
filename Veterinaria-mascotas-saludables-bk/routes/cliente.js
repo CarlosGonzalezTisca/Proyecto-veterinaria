@@ -5,6 +5,7 @@ const ClienteSch= mongoose.model('cliente');
 
 /*Hola*/ 
 /*asdasdasdsad*/ 
+
 router.get('/', async(req, res, next)=> {
   await ClienteSch.find((err,cli)=>{
  
