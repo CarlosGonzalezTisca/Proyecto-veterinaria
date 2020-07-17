@@ -3,7 +3,7 @@ var router = express.Router();
 const mongoose=require('mongoose');
 const ClienteSch= mongoose.model('cliente');
 
-
+/*Hola*/ 
 
 router.get('/', async(req, res, next)=> {
   await ClienteSch.find((err,cli)=>{
