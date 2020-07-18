@@ -18,32 +18,33 @@ router.get('/', async(req, res, next)=> {
  router.put('/mascota', async (req, res)=>{
 
    var mascota ={
-  
-            
+            "_id": req.body._id,
       "nombre_masc": req.body.nombre_masc,
       "raza": req.body.raza,
-      "estatura": req.body.estatura,
+      "estatura": req.body,
       "peso": req.body.peso,
- 
-   }
+      "jaula":{
+          "numerojaula": req.body.numerojaula,
+          "activa": req.body.activa,
+          "idmascota": req.body.idmascota,
+          "hora":req.body.hora
+      }
+  }
+
+   
 
 
-    const masc= await ClienteSch.findOneAndUpdate(req.body._id,
-    {$push: {mascota: mascota}},
-    /*{safe: true, upsert: true},
-    function  (err, doc) {
-        if(err){
-        res.send("fallo al guardar mascota");
-        }else{
-           masc.save();
-          res.status(200).send(masc);
-        }
-        
-    }*/
-    { new: true })
-    res.send(masc)
-  
- })
+   const masc = await ClienteSch.findOneAndUpdate({ _id: req.body._id }, 
+      { $push: { mascota : mascota  } },
+    /* function (error, success) {
+           if (error) {
+               console.log(error);
+           } else {
+               console.log(success);
+               
+           } }*/
+      {new :true})
+       res.send(masc) })
 
 
 module.exports = router;

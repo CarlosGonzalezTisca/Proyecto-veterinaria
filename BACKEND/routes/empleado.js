@@ -3,7 +3,7 @@ var router = express.Router();
 
 const mongoose = require('mongoose');
 const empleadoSchema = mongoose.model('empleados');
-//adios
+
 
 const { check, ValidacionesResult, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
@@ -26,6 +26,20 @@ router.get('/', async (req, res, next) => {
   })
 
 });
+
+// Get One
+router.get('/buscar1', async (req, res) => {
+
+  const emple = await empleadoSchema.findOne({ _id: req.body._id })
+
+  if (emple) {
+
+      return res.send(emple)
+  }
+  return res.send("Empleado no encontrado ")
+
+});
+
 
 // POST
 router.post('/', async (req, res) => {
